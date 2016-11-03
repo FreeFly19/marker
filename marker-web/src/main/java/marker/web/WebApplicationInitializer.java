@@ -1,7 +1,7 @@
 package marker.web;
 
 import marker.core.config.CoreConfiguration;
-import marker.web.config.ServletConfiguration;
+import marker.web.config.WebConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -12,7 +12,7 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {ServletConfiguration.class};
+        return new Class<?>[] {WebConfiguration.class};
     }
 
     @Override
