@@ -10,4 +10,5 @@ import java.util.List;
 public interface StudentService {
     Student getById(Integer id);
     List<Student> findAll();
+    void modify();
 }

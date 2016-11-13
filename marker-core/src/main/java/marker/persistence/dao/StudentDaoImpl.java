@@ -3,6 +3,7 @@ package marker.persistence.dao;
 import marker.core.dao.StudentDao;
 import marker.core.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

@@ -11,6 +11,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "longtext")
     private String text;
 
     public Integer getId() {

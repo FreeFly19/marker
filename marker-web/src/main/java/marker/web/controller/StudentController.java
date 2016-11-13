@@ -5,9 +5,7 @@ import marker.core.entity.Student;
 import marker.core.service.student.StudentService;
 import marker.core.util.json.view.StudentView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +21,22 @@ public class StudentController {
     @GetMapping
     @JsonView(StudentView.WithVisits.class)
     public List<Student> getAll() {
-        List<Student> all = studentService.findAll();
-        return all;
+        return studentService.findAll();
+    }
+
+    @GetMapping("{id}")
+    @JsonView(StudentView.Full.class)
+    public Student getById(@PathVariable("id") Integer id) {
+        return studentService.getById(id);
+    }
+
+    @GetMapping("/clear")
+    public void clear() {
+        studentService.modify();
+    }
+
+    @GetMapping("/caches")
+    public String[] caches() {
+        return net.sf.ehcache.CacheManager.create().getCacheNames();
     }
 }

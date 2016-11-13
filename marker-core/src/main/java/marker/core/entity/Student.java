@@ -2,8 +2,12 @@ package marker.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import marker.core.util.json.view.StudentView;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "students")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +38,7 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     @JsonView(StudentView.WithVisits.class)
+    @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private Set<Visit> visits = new HashSet<>();
 
     public Integer getId() {

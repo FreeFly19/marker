@@ -22,8 +22,12 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
         entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
+    @Override
     public List<T> findAll() {
         String jpqlSelect = String.format("select entity from %s entity", entityClass.getName());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {}
         return getEntityManager().createQuery(jpqlSelect, entityClass).getResultList();
     }
 

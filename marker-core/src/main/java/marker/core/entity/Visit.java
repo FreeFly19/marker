@@ -3,8 +3,12 @@ package marker.core.entity;
 import com.fasterxml.jackson.annotation.JsonView;
 import marker.core.util.json.view.StudentView;
 import marker.core.util.json.view.VisitView;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 /**
@@ -12,6 +16,7 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "visits")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
